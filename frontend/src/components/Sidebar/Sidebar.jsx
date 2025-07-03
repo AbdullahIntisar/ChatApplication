@@ -5,7 +5,7 @@ import Logout from "./Logout";
 
 const Sidebar = () => {
   return (
-    <div>
+    <div className="overflow-auto">
       <SearchBar />
       <div className="divider px-3"></div>
       <Conversations />

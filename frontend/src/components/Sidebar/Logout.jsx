@@ -5,7 +5,7 @@ import useLogOut from "../../hooks/useLogOut";
 const Logout = () => {
   const { loading, logout } = useLogOut();
   return (
-    <div className="mt-auto pt-6">
+    <div className="mt-auto">
       {!loading ? (
         <BiLogOut
           className="w-6 h-6 text-white cursor-pointer"

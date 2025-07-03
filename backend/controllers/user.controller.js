@@ -2,7 +2,7 @@ import User from "../models/user.model.js";
 
 export const getUsersForSideBar = async (req, res, next) => {
   try {
-    const loggedInUserId = req.user_id;
+    const loggedInUserId = req.user._id;
 
     const allUsers = await User.find({
       _id: {
