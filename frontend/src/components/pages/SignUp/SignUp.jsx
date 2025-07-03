@@ -47,7 +47,9 @@ const SignUp = () => {
 
             <div>
               <label className="label p-2">
-                <span className="text-base label-text text-white ">Username</span>
+                <span className="text-base label-text text-white ">
+                  Username
+                </span>
               </label>
               <input
                 type="text"
@@ -62,7 +64,9 @@ const SignUp = () => {
 
             <div>
               <label className="label p-2">
-                <span className="text-base label-text text-white">Password</span>
+                <span className="text-base label-text text-white">
+                  Password
+                </span>
               </label>
               <input
                 type="password"
@@ -77,7 +81,9 @@ const SignUp = () => {
 
             <div>
               <label className="label p-2">
-                <span className="text-base label-text text-white">Confirm Password</span>
+                <span className="text-base label-text text-white">
+                  Confirm Password
+                </span>
               </label>
               <input
                 type="password"
