@@ -1,3 +1,4 @@
+import path from "path";
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
@@ -11,16 +12,26 @@ import connectToMongoDB from "./db/connecToMongoDB.js";
 dotenv.config();
 const PORT = process.env.PORT || 5000;
 
-// app.get("/", (req, res) => {
-//   res.send("Hello World!!");
-// });
+const __dirname = path.resolve();
 
 //middleware
 app.use(express.json());
 app.use(cookieParser());
+console.log("⏳ Registering /api/auth...");
+
 app.use("/api/auth", authRoutes);
+console.log("⏳ Registering /api/messages...");
+
 app.use("/api/messages", messageRoutes);
+console.log("⏳ Registering /api/users...");
+
 app.use("/api/users", userRoutes);
+
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
 
 connectToMongoDB().then(() => {
   server.listen(PORT, () => {
