@@ -1,6 +1,8 @@
 import Conversation from "../models/conversation.model.js";
 import Messages from "../models/message.model.js";
 import mongoose from "mongoose";
+import { getReceiverSocketId } from "../socket/socket.js";
+import { getIO } from "../socket/socket.js";
 
 export const sendMessage = async (req, res) => {
   try {
@@ -33,7 +35,7 @@ export const sendMessage = async (req, res) => {
       receiverId: receiverObjectId,
       message,
     });
-
+    const io = getIO();
     if (newMessage) {
       conversation.messages.push(newMessage._id);
     }
@@ -44,6 +46,12 @@ export const sendMessage = async (req, res) => {
     //await conversation.save();
     await Promise.all([newMessage.save(), conversation.save()]);
 
+    //socket io funcationality here!!
+
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverId) {
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
     res.status(201).json(newMessage);
   } catch (error) {
     console.log("Error in send Message Controller:", error.message);

@@ -14,6 +14,7 @@ const Message = ({ message }) => {
   const profilePic = fromMe
     ? authUser.profilePic
     : selectedConversation?.profilePic;
+  const shakeClass = message.shouldShake ? "shake" : "";
 
   // Add debugging (remove this after fixing)
   console.log("Message senderId:", message.senderId, typeof message.senderId);
@@ -30,7 +31,7 @@ const Message = ({ message }) => {
       <div
         className={`chat-bubble text-white ${
           fromMe ? "bg-blue-500" : "bg-gray-500"
-        } pb-2`}
+        } pb-2 ${shakeClass}`}
       >
         {message.message}
       </div>
