@@ -17,13 +17,10 @@ const __dirname = path.resolve();
 //middleware
 app.use(express.json());
 app.use(cookieParser());
-console.log("⏳ Registering /api/auth...");
 
 app.use("/api/auth", authRoutes);
-console.log("⏳ Registering /api/messages...");
 
 app.use("/api/messages", messageRoutes);
-console.log("⏳ Registering /api/users...");
 
 app.use("/api/users", userRoutes);
 
